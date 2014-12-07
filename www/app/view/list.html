@@ -1,0 +1,26 @@
+<div  layout="column" flex layout-fill class="dividerdemoBasicUsage buttondemoBasicUsage subheaderdemoBasicUsage" >
+  <md-content style="height:{{content_height}}px;">
+    <section>
+      <!-- <md-subheader class="md-primary">Unread Messages</md-subheader> -->
+      <md-list layout="column">
+        <md-item ng-repeat="item in messages">
+        <md-item-content>
+          <div class="md-tile-left">
+            <img ng-src="{{item.face}}" class="face" alt="{{item.who}}">
+          </div>
+          <div class="md-tile-content list_text">
+            <h3>{{item.what}}</h3>
+            <h4>{{item.who}}</h4>
+            <p>
+              {{item.notes}}
+            </p>
+          </div>
+        </md-item-content>
+        <md-divider md-inset ng-if="!$last"></md-divider>
+         
+        </md-item>
+      </md-list>
+    </section>
+    
+  </md-content>
+</div>

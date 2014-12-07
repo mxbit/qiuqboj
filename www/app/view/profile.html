@@ -1,0 +1,30 @@
+<div class="textFielddemoBasicUsage">
+<md-content md-theme="light-blue-dark">
+    <form style="padding: 10px;">
+      <div class="row">
+        <md-text-float label="Title"  ng-model="user.title"   ></md-text-float>
+        <md-text-float label="eMail"  ng-model="user.email" type="email" ></md-text-float>
+      </div>
+    </form>
+  </md-content>
+  <md-content>
+    <form style="padding: 20px;">
+      <div class="row">
+          <md-text-float label="FirstName" ng-model="user.firstName"  > </md-text-float>
+          <md-text-float label="LastName"  ng-model="user.lastName"   > </md-text-float>
+      </div>
+      <md-text-float label="Address"       ng-model="user.address"    > </md-text-float>
+      <div class="row">
+        <md-text-float label="City"        ng-model="user.city"       > </md-text-float>
+        <md-text-float label="Postal Code" ng-model="user.postalCode" > </md-text-float>
+      </div>
+      <div class="row">
+        <md-text-float label="State"       ng-model="user.state"      > </md-text-float>
+        <md-text-float label="Country"     ng-model="user.country"  > </md-text-float>
+      </div>
+      <div class="row" layout-align="end end">
+        <md-button class="md-primary md-raised" md-theme="orange" >Update</md-button>
+      </div>
+    </form>
+  </md-content>
+</div>

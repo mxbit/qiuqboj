@@ -1,0 +1,32 @@
+
+<md-tabs md-selected="data.selectedIndex" md-theme="deep-orange">
+      <md-tab id="tab1" aria-controls="tab1-content" focusin='tabsFocus()'  >TSIL</md-tab>
+      <md-tab id="tab2" aria-controls="tab2-content">PAM</md-tab>
+     
+    </md-tabs>
+    <ng-switch on="data.selectedIndex" class="tabpanel-container">
+        <div  layout-fill role="tabpanel" 
+             id="tab1-content"
+             aria-labelledby="tab1"
+             ng-switch-when="0"
+             md-swipe-left="next()"
+             md-swipe-right="previous()" >
+            
+            
+            <div ui-view='list' class="fade-in-not-out"></div>
+
+
+        </div>
+        <div layout-fill role="tabpanel"
+             id="tab2-content"
+             aria-labelledby="tab2"
+             ng-switch-when="1"
+             md-swipe-left="next()"
+             md-swipe-right="previous()" >
+            
+            <div ui-view='maps'  class="fade-in-not-out"></div>
+            
+        </div>
+
+    </ng-switch>
+

@@ -1,0 +1,17 @@
+<div class="textFielddemoBasicUsage">
+
+
+  <md-content layout-fill>
+    <form style="padding: 20px;">
+      <div class="row">
+          <label>Notification {{ notification }} </label>
+          <md-switch md-theme="blue"  ng-model="notification" aria-label="Switch 2" ng-true-value="'ON'" ng-false-value="'OFF'"></md-switch>
+      </div>
+      <label>Search Radius <span>{{radius}} KM</span></label>
+      <md-slider md-discrete md-theme="blue" ng-model="radius" step="10" min="10" max="100" aria-label="radius"></md-slider>
+      
+    </form>
+  </md-content>
+
+
+</div>
