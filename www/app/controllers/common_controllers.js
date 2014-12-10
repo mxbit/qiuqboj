@@ -1,8 +1,30 @@
 var commonController = angular.module('jobquiq.commonController',[]);
 
-commonController.controller('SideNavController', function($scope, $timeout, $mdSidenav, $rootScope) {
+commonController.controller('SideNavController', function($scope, $timeout, $mdSidenav, $rootScope, $mdDialog, LocalStorage) {
+  
+  // checking login status
+  var user = LocalStorage.getVariable('userInfo');
+  if(user.email)  {
+    $rootScope.isLoggedIn = true;
+  }
+  else  {
+     $rootScope.isLoggedIn = true;console.log('Not logged');
+  }
+
   $scope.close = function() { $mdSidenav('left').close(); };
-  $scope.goView = function(name) { $rootScope.$state.go(name); $scope.close();};
+  
+  $scope.goView = function(name) { 
+    if($rootScope.isLoggedIn)  {
+      $rootScope.$state.go(name); 
+    }
+    else  {
+      $mdDialog.show({ controller: 'AuthDialogController', templateUrl: 'app/view/google_auth.html',targetEvent: event});
+    }
+    $scope.close();
+  };
+
+
+
 })
 
 commonController.controller('TopBarController', function($scope, $timeout, $mdSidenav,$rootScope, $mdDialog) {
@@ -12,15 +34,17 @@ commonController.controller('TopBarController', function($scope, $timeout, $mdSi
 
 
   $scope.showLogin = function(event) {
-    $mdDialog.show({ controller: 'AuthDialogController', templateUrl: 'app/view/google_auth.html',targetEvent: event});
+    if($rootScope.isLoggedIn)  {
+        $rootScope.$state.go('profile');
+    }
+    else  {
+      $mdDialog.show({ controller: 'AuthDialogController', templateUrl: 'app/view/google_auth.html',targetEvent: event});
+    }
+   
   }
 });
 
-commonController.controller('AuthDialogController', function($scope,$rootScope, $mdDialog){
-  $scope.dialogueEventHandler = function() {
-    $mdDialog.cancel();
-  };
-});
+
 
 commonController.controller('HomeController', function($scope,$rootScope){
 	$scope.gotoNext = function()	{ $rootScope.$state.go('jobs.tabs');  } 

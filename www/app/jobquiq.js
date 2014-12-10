@@ -1,20 +1,30 @@
-jobquiq = angular.module('jobquiq',['ui.router', 'ngAnimate', 'ngMaterial','jobquiq.commonController','jobquiq.jobController']);
+jobquiq = angular.module('jobquiq',[
+	'ui.router', 
+	'ngAnimate', 
+	'ngMaterial',
+	'ngCordova',
+	'jobquiq.commonController',
+	'jobquiq.jobController',
+	'jobquiq.userController',
+	'jobquiq.storageFactory',
+	'jobquiq.authService'
+	]);
 
-jobquiq.run(['$rootScope','$state','$stateParams',function($rootScope, $state, $stateParams)	{
+jobquiq.run(['$rootScope','$state','$stateParams','$location',function($rootScope, $state, $stateParams, $location)	{
 		$rootScope.$state = $state;
 		$rootScope.$stateParams = $stateParams;
+		$rootScope.isLoggedIn = false;
+
+	    var path = $location.absUrl();
+	    $rootScope.baseUrl = ($location.absUrl().indexOf("http://localhost/jobquiq") > 0 )  ? "http://localhost/jobserver/" : "http://jobquiq.com/";
+	    $rootScope.jsonUrl =  $rootScope.baseUrl + "index.php/";		
 
 	
 		$rootScope.$on('$stateChangeError', function(event, unfoundState, fromState, fromParam)	{
 			console.log(unfoundState.to); // "lazy.state"
 			console.log(unfoundState.toParams); // {a:1, b:2}
 			console.log(unfoundState.options); 		
-		});
-
-
-
-
-
+		});	
 
 	}
 ]);
