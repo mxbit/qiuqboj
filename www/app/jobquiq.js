@@ -16,7 +16,7 @@ jobquiq.run(['$rootScope','$state','$stateParams','$location',function($rootScop
 		$rootScope.isLoggedIn = false;
 
 	    var path = $location.absUrl();
-	    $rootScope.baseUrl = ($location.absUrl().indexOf("http://localhost/jobquiq") > 0 )  ? "http://localhost/jobserver/" : "http://jobquiq.com/";
+	    $rootScope.baseUrl = ($location.absUrl().indexOf("http://localhost/jobquiq") >= 0 )  ? "http://localhost/jobserver/" : "http://jobquiq.com/";
 	    $rootScope.jsonUrl =  $rootScope.baseUrl + "index.php/";		
 
 	

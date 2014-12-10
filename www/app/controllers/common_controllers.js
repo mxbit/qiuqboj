@@ -8,7 +8,7 @@ commonController.controller('SideNavController', function($scope, $timeout, $mdS
     $rootScope.isLoggedIn = true;
   }
   else  {
-     $rootScope.isLoggedIn = true;console.log('Not logged');
+     $rootScope.isLoggedIn = false;console.log('Not logged');
   }
 
   $scope.close = function() { $mdSidenav('left').close(); };
@@ -50,14 +50,7 @@ commonController.controller('HomeController', function($scope,$rootScope){
 	$scope.gotoNext = function()	{ $rootScope.$state.go('jobs.tabs');  } 
 });
 
-commonController.controller('ProfileController', function($scope,$rootScope){
-   
-});
 
-commonController.controller('SettingsController', function($scope,$rootScope){
-   $scope.radius = 30;
-   $scope.notification = 'ON';
-});
 
 
 

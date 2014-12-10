@@ -1,5 +1,5 @@
-.home_icon{position: absolute; right: 10px;top: 7px;}
-.user_icon{position: absolute; right: 35px;top: 7px;}
+.home_icon{position: absolute; right: 10px;top: -6px;height: 36px;}
+.user_icon{position: absolute; right: 35px;top: -6px;height: 36px;}
 .settings_icon{text-transform: uppercase;color: orange;}
 .list_text{text-align: left;}
 .logo_type{width: 50%;margin-top: 10px;}

@@ -43,13 +43,7 @@ $scope.googleLogin = function() {
 
     }
 
-    $scope.updateUserInfo = function(event)  {
-      var data_user = $scope.userinfo;
-      data_user['initial'] = false;
-      var customer = new Customer(data_user);
-      customer.$save();
-      LocalStorage.setVariable('userInfo',data_user );
-    }
+   
 
      if($rootScope.isLoggedIn)  {
 
@@ -60,4 +54,25 @@ $scope.googleLogin = function() {
      }
 
 
+});
+
+
+
+userController.controller('ProfileController', function($scope,$rootScope,Customer,LocalStorage){
+  var user = {title:"Shiva",email:'Shiva@kailas.com'}
+  $scope.user = user;
+  //$scope.user = LocalStorage.getObject('userInfo');
+
+	$scope.updateUserInfo = function()	{
+		  var infoResult = {name:'ParamShiv',id:'0101001010',email:'shiv@shiva.com',gender:'male',initial:false,alt_phone:'12070670',addr_1:'#525 8th Cross'};
+		  var customer = new Customer(infoResult);
+		  customer.$save();
+		  //LocalStorage.setVariable('userInfo',$scope.user );	
+	}
+
+});
+
+commonController.controller('SettingsController', function($scope,$rootScope){
+   $scope.radius = 30;
+   $scope.notification = 'ON';
 });

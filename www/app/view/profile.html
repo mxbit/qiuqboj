@@ -3,7 +3,7 @@
     <form style="padding: 10px;">
       <div class="row">
         <md-text-float label="Title"  ng-model="user.title"   ></md-text-float>
-        <md-text-float label="eMail"  ng-model="user.email" type="email" ></md-text-float>
+        <md-text-float label="eMail"  ng-model="user.email" type="email" ng-disabled="true"></md-text-float>
       </div>
     </form>
   </md-content>
@@ -23,7 +23,7 @@
         <md-text-float label="Country"     ng-model="user.country"  > </md-text-float>
       </div>
       <div class="row" layout-align="end end">
-        <md-button class="md-primary md-raised" md-theme="orange" >Update</md-button>
+        <md-button class="md-primary md-raised" md-theme="orange" ng-click='updateUserInfo()'>Update</md-button>
       </div>
     </form>
   </md-content>
