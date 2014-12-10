@@ -11,7 +11,10 @@ $scope.googleLogin = function() {
 
       if(!$rootScope.isLoggedIn)  {
 
-        var client_id = "196955690689-udi0itbq03pd3f07qn101b7ue6v28d33.apps.googleusercontent.com";
+        var client_id = "196955690689-udi0itbq03pd3f07qn101b7ue6v28d33.apps.googleusercontent.com"; // Client ID for web application
+        //196955690689-cvshsvikjsbk3c4sntg4455fo3cqju2v.apps.googleusercontent.com //Service Account
+        // var client_id = "332483207466-42pq7to17pendeuq1fiqcr0r18t9j28i.apps.googleusercontent.com"; // Bakasur
+         // var client_id = "332483207466-42pq7to17pendeuq1fiqcr0r18t9j28i.apps.googleusercontent.com";
         $cordovaOauth.google(client_id, ["https://www.googleapis.com/auth/userinfo.profile", "https://www.googleapis.com/auth/userinfo.email"]).then(function(result) {
 
             var info_service =  GoogleAuth2.getBaseInfo(result.access_token)
@@ -20,13 +23,16 @@ $scope.googleLogin = function() {
               delete infoResult.__proto__;
               delete infoResult.$resolved;
               console.debug(JSON.stringify(infoResult));
-              LocalStorage.setVariable('userInfo',infoResult );
+              LocalStorage.setObject('appUserInfo',infoResult );
               $rootScope.$broadcast('loginEvent',{done:0,data:infoResult})
               $rootScope.isLoggedIn = true;
               $scope.userinfo = infoResult;
               infoResult['initial'] = true;
               var customer = new Customer(infoResult);
-              customer.$save();
+              customer.$save(infoResult);
+              alert(JSON.stringify(infoResult));
+               $mdDialog.cancel();
+               $rootScope.$state.go('profile'); 
 
             })
 
@@ -37,7 +43,7 @@ $scope.googleLogin = function() {
 
       }
       else  {
-        $scope.userinfo = LocalStorage.getObject('userInfo');
+        $scope.userinfo = LocalStorage.getObject('appUserInfo');
         $scope.loggedIn = true;
       }
 
@@ -47,7 +53,7 @@ $scope.googleLogin = function() {
 
      if($rootScope.isLoggedIn)  {
 
-        $scope.userinfo = LocalStorage.getObject('userInfo');
+        $scope.userinfo = LocalStorage.getObject('appUserInfo');
         $scope.loggedIn = true;   
         console.debug($rootScope.isLoggedIn, $scope.userinfo)
 
@@ -59,16 +65,22 @@ $scope.googleLogin = function() {
 
 
 userController.controller('ProfileController', function($scope,$rootScope,Customer,LocalStorage){
-  var user = {title:"Shiva",email:'Shiva@kailas.com'}
-  $scope.user = user;
-  //$scope.user = LocalStorage.getObject('userInfo');
-
+  //var user = {title:"Shiva",email:'Shiva@kailas.com'}
+  //$scope.user = user;
+  $scope.user = LocalStorage.getObject('appUserInfo');
+  console.log($scope.user);
 	$scope.updateUserInfo = function()	{
 		  var infoResult = {name:'ParamShiv',id:'0101001010',email:'shiv@shiva.com',gender:'male',initial:false,alt_phone:'12070670',addr_1:'#525 8th Cross'};
-		  var customer = new Customer(infoResult);
+		  var customer = new Customer($scope.user);
 		  customer.$save();
-		  //LocalStorage.setVariable('userInfo',$scope.user );	
+		  LocalStorage.setObject('appUserInfo',$scope.user );	
 	}
+
+  $scope.logout = function()  {
+    LocalStorage.setObject('appUserInfo', {} );  
+    $rootScope.$state.go('home'); 
+    $rootScope.isLoggedIn = false;
+  }
 
 });
 

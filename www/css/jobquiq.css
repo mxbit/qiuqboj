@@ -5,6 +5,9 @@
 .logo_type{width: 50%;margin-top: 10px;}
 .side_nav_logo{width:33%}
 .home_txt{padding: 18px!important;text-align: justify;text-transform: initial;line-height: 18px;}
+.profile{}
+.profile .face {border-radius: 30px;border: 1px solid #ddd;width: 48px;margin: 16px; margin-bottom: 0px; }
+
 /*TOOLBARS*/
 md-toolbar {
   display: -webkit-box;

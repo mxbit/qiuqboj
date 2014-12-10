@@ -2,16 +2,21 @@
 <md-content md-theme="light-blue-dark">
     <form style="padding: 10px;">
       <div class="row">
-        <md-text-float label="Title"  ng-model="user.title"   ></md-text-float>
+        <md-text-float label="Title"  ng-model="user.name"   ></md-text-float>
         <md-text-float label="eMail"  ng-model="user.email" type="email" ng-disabled="true"></md-text-float>
       </div>
     </form>
   </md-content>
+
+  <div class="profile">
+     <img ng-src="{{user.picture}}" class="face" alt="{{user.name}}">
+  </div>
+
   <md-content>
     <form style="padding: 20px;">
       <div class="row">
-          <md-text-float label="FirstName" ng-model="user.firstName"  > </md-text-float>
-          <md-text-float label="LastName"  ng-model="user.lastName"   > </md-text-float>
+          <md-text-float label="FirstName" ng-model="user.given_name"  > </md-text-float>
+          <md-text-float label="LastName"  ng-model="user.family_name"   > </md-text-float>
       </div>
       <md-text-float label="Address"       ng-model="user.address"    > </md-text-float>
       <div class="row">
@@ -22,8 +27,9 @@
         <md-text-float label="State"       ng-model="user.state"      > </md-text-float>
         <md-text-float label="Country"     ng-model="user.country"  > </md-text-float>
       </div>
-      <div class="row" layout-align="end end">
+      <div class="row" layout-align="end end" style="padding-top:20px;">
         <md-button class="md-primary md-raised" md-theme="orange" ng-click='updateUserInfo()'>Update</md-button>
+        <md-button class="md-warn md-raised" md-theme="orange" ng-click='logout()'>Logout</md-button>
       </div>
     </form>
   </md-content>

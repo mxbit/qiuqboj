@@ -2,8 +2,8 @@ var commonController = angular.module('jobquiq.commonController',[]);
 
 commonController.controller('SideNavController', function($scope, $timeout, $mdSidenav, $rootScope, $mdDialog, LocalStorage) {
   
-  // checking login status
-  var user = LocalStorage.getVariable('userInfo');
+  //checking login status
+  var user = LocalStorage.getObject('appUserInfo');
   if(user.email)  {
     $rootScope.isLoggedIn = true;
   }
