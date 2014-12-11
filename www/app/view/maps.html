@@ -1,2 +1,21 @@
-<h1>MAP</h1>
+  <md-content style="height:{{content_height}}px;">
+
+  <ui-gmap-google-map
+    center="map.center"
+    zoom="map.zoom" >
+
+    <ui-gmap-marker
+    idKey="marker.id"
+    coords="marker.coords"
+    icon="marker.icon">
+    <ui-gmap-window show='true'>
+      <div>
+        hello
+      </div>
+    </ui-gmap-window>
+  </ui-gmap-marker>
+
+
+</ui-gmap-google-map>
+</md-content>
 <md-button class="md-primary" md-theme="cyan" ng-click='goDetails()'>GO DETAILS MORE</md-button>

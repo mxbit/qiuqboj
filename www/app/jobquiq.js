@@ -3,6 +3,7 @@ jobquiq = angular.module('jobquiq',[
 	'ngAnimate', 
 	'ngMaterial',
 	'ngCordova',
+	'uiGmapgoogle-maps',
 	'jobquiq.commonController',
 	'jobquiq.jobController',
 	'jobquiq.userController',
@@ -29,7 +30,7 @@ jobquiq.run(['$rootScope','$state','$stateParams','$location',function($rootScop
 	}
 ]);
 
-jobquiq.config(['$stateProvider', '$urlRouterProvider',function($stateProvider, $urlRouterProvider)	{
+jobquiq.config(['$stateProvider', '$urlRouterProvider','uiGmapGoogleMapApiProvider',function($stateProvider, $urlRouterProvider,GoogleMapApi)	{
 		$urlRouterProvider.otherwise('home');
 
 		$stateProvider.state('home',{url:"/home", controller:'HomeController', templateUrl:'app/view/home.html'});
@@ -45,7 +46,7 @@ jobquiq.config(['$stateProvider', '$urlRouterProvider',function($stateProvider, 
 		$stateProvider.state('profile',{url:"/profile", controller:'ProfileController', templateUrl:'app/view/profile.html'});
 		$stateProvider.state('settings',{url:"/settings", controller:'SettingsController', templateUrl:'app/view/settings.html'});
 
-
+		GoogleMapApi.configure({ v: '3.17', libraries: '' });
 	
 			
 	}

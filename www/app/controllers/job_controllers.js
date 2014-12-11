@@ -75,8 +75,37 @@ $scope.messages = [{
 
 });
 
-jobController.controller('JobsMapController', function($scope, $rootScope)	{
-	$scope.goDetails = function()	{
-		$rootScope.$state.go('jobsdetail');
-	}
-});
+jobController.controller('JobsMapController', function($scope, $rootScope, $window)	{
+  	$scope.goDetails = function()	{
+  		$rootScope.$state.go('jobsdetail');
+  	}
+    $scope.content_height = ($window.innerHeight-48-34-80);
+
+  var coords = {
+    latitude: 45.0,
+    longitude: 11.0
+  };
+
+  icon = undefined;
+
+  $scope.map = {
+    title: "A test map",
+    center: coords,
+    zoom: 15,
+  };
+
+  $scope.marker = {
+    id: "myMarker",
+    coords: coords,
+    icon: 'img/poi.png'
+  };
+
+  $scope.markers = [
+    $scope.marker
+  ];
+
+
+
+  });
+
+

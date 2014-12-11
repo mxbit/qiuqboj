@@ -30,7 +30,7 @@ $scope.googleLogin = function() {
               infoResult['initial'] = true;
               var customer = new Customer(infoResult);
               customer.$save(infoResult);
-              alert(JSON.stringify(infoResult));
+              //alert(JSON.stringify(infoResult));
                $mdDialog.cancel();
                $rootScope.$state.go('profile'); 
 
@@ -84,7 +84,22 @@ userController.controller('ProfileController', function($scope,$rootScope,Custom
 
 });
 
-commonController.controller('SettingsController', function($scope,$rootScope){
+commonController.controller('SettingsController', function($scope,$rootScope,$window){
    $scope.radius = 30;
    $scope.notification = 'ON';
+
+   $scope.setlocation = function()  {
+      console.log($scope.map.center);
+      $scope.marker.coords = $scope.map.center;
+   }
+
+  $scope.content_height = ($window.innerHeight-48-132);
+
+  var coords = { latitude: 12.9192, longitude: 77.6534};
+  $scope.map = {center: coords,zoom: 12,};
+
+  $scope.marker = { id: "myMarker",coords: coords, icon: 'img/poi.png'};
+
+  $scope.markers = [$scope.marker];
+
 });

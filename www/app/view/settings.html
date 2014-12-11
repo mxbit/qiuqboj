@@ -1,17 +1,35 @@
-<div class="textFielddemoBasicUsage">
-
-
-  <md-content layout-fill>
-    <form style="padding: 20px;">
-      <div class="row">
-          <label>Notification {{ notification }} </label>
-          <md-switch md-theme="blue"  ng-model="notification" aria-label="Switch 2" ng-true-value="'ON'" ng-false-value="'OFF'"></md-switch>
+<div class="textFielddemoBasicUsage ">
+<md-content style="padding: 20px;">
+<div layout="row">
+  <div flex='75'>
+      <div layout="row" layout-align="start start">
+      <label style="padding-top:10px">Notification {{ notification }} </label>
+       <md-switch md-theme="blue"  ng-model="notification" aria-label="Switch 2" ng-true-value="'ON'" ng-false-value="'OFF'"></md-switch>
       </div>
-      <label>Search Radius <span>{{radius}} KM</span></label>
-      <md-slider md-discrete md-theme="blue" ng-model="radius" step="10" min="10" max="100" aria-label="radius"></md-slider>
-      
-    </form>
-  </md-content>
+  </div>
+   <md-button class="md-primary md-raised" ng-click='setlocation()' style="font-size:10px;height:30px">Set Location</md-button>
+</div>
+    <label>Lookup job on <b style="color:red">{{radius}}</b> KM radius.</label>
+    <md-slider md-discrete md-theme="blue" ng-model="radius" step="10" min="10" max="100" aria-label="radius"></md-slider>
+</md-content>
+
+
+  <md-content style="height:{{content_height}}px;">
+
+  <ui-gmap-google-map
+    center="map.center"
+    zoom="map.zoom" >
+
+    <ui-gmap-marker
+    idKey="marker.id"
+    coords="marker.coords"
+    icon="marker.icon">
+
+  </ui-gmap-marker>
+
+
+</ui-gmap-google-map>
+</md-content>
 
 
 </div>
