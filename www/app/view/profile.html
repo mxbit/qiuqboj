@@ -18,15 +18,19 @@
           <md-text-float label="FirstName" ng-model="user.given_name"  > </md-text-float>
           <md-text-float label="LastName"  ng-model="user.family_name"   > </md-text-float>
       </div>
-      <md-text-float label="Address"       ng-model="user.address"    > </md-text-float>
+      <md-text-float label="Address"       ng-model="addr.address"    > </md-text-float>
       <div class="row">
-        <md-text-float label="City"        ng-model="user.city"       > </md-text-float>
-        <md-text-float label="Postal Code" ng-model="user.postalCode" > </md-text-float>
+        <md-text-float label="City"        ng-model="addr.city"       > </md-text-float>
+        <md-text-float label="Postal Code" ng-model="addr.postalCode" > </md-text-float>
       </div>
       <div class="row">
-        <md-text-float label="State"       ng-model="user.state"      > </md-text-float>
-        <md-text-float label="Country"     ng-model="user.country"  > </md-text-float>
+        <md-text-float label="State"       ng-model="addr.state"      > </md-text-float>
+        <md-text-float label="Country"     ng-model="addr.country"  > </md-text-float>
       </div>
+      <div class="row">
+        <md-text-float label="Phone"       ng-model="user.phone"      > </md-text-float>
+        <md-text-float label="Alt Phone"     ng-model="user.alt_phone"  > </md-text-float>
+      </div>      
       <div class="row" layout-align="end end" style="padding-top:20px;">
         <md-button class="md-primary md-raised" md-theme="orange" ng-click='updateUserInfo()'>Update</md-button>
         <md-button class="md-warn md-raised" md-theme="orange" ng-click='logout()'>Logout</md-button>
@@ -34,3 +38,4 @@
     </form>
   </md-content>
 </div>
+

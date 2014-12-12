@@ -1,6 +1,6 @@
 var userController = angular.module('jobquiq.userController',[]);
 
-userController.controller('AuthDialogController', function($scope, $cordovaOauth, $rootScope, $mdDialog, Customer,GoogleAuth2, LocalStorage) {
+userController.controller('AuthDialogController', function($scope, $cordovaOauth, $rootScope, $mdDialog, AppUser,GoogleAuth2, LocalStorage) {
 
   $scope.dialogueEventHandler = function() {
     $mdDialog.cancel();
@@ -28,7 +28,7 @@ $scope.googleLogin = function() {
               $rootScope.isLoggedIn = true;
               $scope.userinfo = infoResult;
               infoResult['initial'] = true;
-              var customer = new Customer(infoResult);
+              var customer = new AppUser(infoResult);
               customer.$save(infoResult);
               //alert(JSON.stringify(infoResult));
                $mdDialog.cancel();
@@ -64,14 +64,23 @@ $scope.googleLogin = function() {
 
 
 
-userController.controller('ProfileController', function($scope,$rootScope,Customer,LocalStorage){
-  //var user = {title:"Shiva",email:'Shiva@kailas.com'}
+userController.controller('ProfileController', function($scope,$rootScope,AppUser,LocalStorage){
   //$scope.user = user;
   $scope.user = LocalStorage.getObject('appUserInfo');
-  console.log($scope.user);
+  $scope.addr;
+
+  if($scope.user.addr_1.length > 5 && $scope.user.addr_1 != undefined)  {
+    $scope.addr = JSON.parse($scope.user.addr_1);
+  }
+  console.log($scope.user.addr_1);
+  
 	$scope.updateUserInfo = function()	{
-		  var infoResult = {name:'ParamShiv',id:'0101001010',email:'shiv@shiva.com',gender:'male',initial:false,alt_phone:'12070670',addr_1:'#525 8th Cross'};
-		  var customer = new Customer($scope.user);
+
+      $scope.user.addr_1 = JSON.stringify($scope.addr);
+
+		 // var infoResult = {name:'ParamShiv',id:'989',email:'shiv@shiva.com',gender:'male',initial:false,alt_phone:'23',addr_1:$scope.user.addr_1};
+      // var customer = new AppUser(infoResult);
+		  var customer = new AppUser($scope.user);
 		  customer.$save();
 		  LocalStorage.setObject('appUserInfo',$scope.user );	
 	}
@@ -84,22 +93,104 @@ userController.controller('ProfileController', function($scope,$rootScope,Custom
 
 });
 
-commonController.controller('SettingsController', function($scope,$rootScope,$window){
-   $scope.radius = 30;
+commonController.controller('SettingsController', function($scope,$rootScope,$window,$interval,LocalStorage,ReverseGeo,AppUser){
+   $scope.radius = 10;
    $scope.notification = 'ON';
+   $scope.content_height = ($window.innerHeight-48-132);
 
-   $scope.setlocation = function()  {
-      console.log($scope.map.center);
-      $scope.marker.coords = $scope.map.center;
+   $scope.userinfo = LocalStorage.getObject('appUserInfo'); 
+
+   var coords = { latitude: 12.9192, longitude: 77.6534};
+   var user_coord =  { latitude: 12.9192, longitude: 77.6534};
+
+   if($scope.userinfo.latlong) {
+      var latlong_data = JSON.parse($scope.userinfo.latlong);
+      user_coord = { latitude: latlong_data.latitude, longitude: latlong_data.longitude}
+      coords =  { latitude: latlong_data.latitude, longitude: latlong_data.longitude}
+   }
+   if($scope.userinfo.radius) {
+      $scope.radius = $scope.userinfo.radius;
    }
 
-  $scope.content_height = ($window.innerHeight-48-132);
+  $scope.notification = ($scope.userinfo.notification == 1 ? 'ON' : 'OFF');
 
-  var coords = { latitude: 12.9192, longitude: 77.6534};
-  $scope.map = {center: coords,zoom: 12,};
+   $scope.updateNotification = function() {
+      var notfn = ($scope.notification == 'ON' ? 1 : 0);
+      var save_data = {email:$scope.userinfo.email, 'initial':false, status:notfn, radius:$scope.radius, update_type:'notification'}
+      var appUser = new AppUser(save_data);
+      appUser.$save();
 
-  $scope.marker = { id: "myMarker",coords: coords, icon: 'img/poi.png'};
+      $scope.userinfo.notification = notfn;
+      $scope.userinfo.radius = $scope.radius;
+      LocalStorage.setObject('appUserInfo',$scope.userinfo);  
+   }
+
+   $scope.updateRadius = function() {
+      console.log($scope.radius);
+   }
+   $scope.setlocation = function()  {
+    //Setting poi marker
+    $interval(function()  {
+      if($scope.marker.icon)
+        $scope.marker.icon = undefined;
+      else
+      $scope.marker.icon = 'img/poi.png';
+      coords.latitude = $scope.map.center.latitude;
+      coords.longitude = $scope.map.center.longitude;
+    }, 100,2);
+      
+    var address = ReverseGeo.reverse($scope.map.center)
+    address.$promise.then(function(geo_result )  {
+      if(geo_result.$resolved)  {
+        //console.log(geo_result.address)
+        var addr = $scope.getBaseAddress(geo_result.address);
+        if(addr)  {
+          var save_data = {email:$scope.userinfo.email, 'initial':false, 
+                            latlong : $scope.map.center.latitude+','+$scope.map.center.longitude, 
+                            location : addr,
+                            geoinfo : JSON.stringify(geo_result.address),
+                            radius : $scope.radius,
+                            update_type:'geo'};
+          var appUser = new AppUser(save_data);
+          appUser.$save();  
+          
+          $scope.userinfo.latlong = JSON.stringify($scope.map.center);
+          $scope.userinfo.radius = $scope.radius;
+          LocalStorage.setObject('appUserInfo',$scope.userinfo);
+
+          //console.log(' -------- '+addr)
+        }
+      }
+    });
+
+
+
+
+   }
+
+
+
+  $scope.map = {center: user_coord,zoom: 12};
+
+  $scope.marker = { id: "myMarker", coords: coords, icon: 'img/poi.png',
+    options:{ draggable: true, labelAnchor: "5 0", labelClass: "marker-labels" }
+  };
 
   $scope.markers = [$scope.marker];
+
+  $scope.getBaseAddress = function(address)  { 
+     if(address.suburb)   return (address.suburb+(address.county ? ', '+address.county : '' ));
+    else if(address.town) return (address.town+(address.state_district ? ', '+address.state_district : '' ));
+    else if(address.village) return (address.village+(address.state_district ? ', '+address.state_district : '' ));
+    else if(address.county) return address.county;
+    else if(address.state_district) return address.state_district;
+
+
+
+    else return null;
+  }
+
+
+
 
 });

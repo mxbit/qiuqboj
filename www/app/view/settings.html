@@ -4,13 +4,14 @@
   <div flex='75'>
       <div layout="row" layout-align="start start">
       <label style="padding-top:10px">Notification {{ notification }} </label>
-       <md-switch md-theme="blue"  ng-model="notification" aria-label="Switch 2" ng-true-value="'ON'" ng-false-value="'OFF'"></md-switch>
+       <md-switch md-theme="blue"  ng-model="notification" aria-label="Switch 2" ng-true-value="'ON'" ng-false-value="'OFF'" aria-label="ON/OFF"
+       ng-click='updateNotification()'></md-switch>
       </div>
   </div>
    <md-button class="md-primary md-raised" ng-click='setlocation()' style="font-size:10px;height:30px">Set Location</md-button>
 </div>
     <label>Lookup job on <b style="color:red">{{radius}}</b> KM radius.</label>
-    <md-slider md-discrete md-theme="blue" ng-model="radius" step="10" min="10" max="100" aria-label="radius"></md-slider>
+    <md-slider md-discrete md-theme="blue" ng-model="radius" step="5" min="5" max="30" aria-label="radius"></md-slider>
 </md-content>
 
 

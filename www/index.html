@@ -62,10 +62,10 @@
             </button>
             <div style="line-height: 36px;"><img src="img/type_logo.png" class="logo_type"></div>  
              
-             <md-button ng-click="goView('home')" md-no-ink class="home_icon">
+             <md-button ng-click="goView('home')" md-no-ink class="home_icon" aria-label="Home">
                 <md-icon icon="img/icons/ic_home_24px.svg" ></md-icon>
              </md-button>             
-             <md-button ng-click="showLogin()" md-no-ink class="user_icon">
+             <md-button ng-click="showLogin()" md-no-ink class="user_icon" aria-label="Profile">
                 <md-icon icon="img/icons/ic_person_24px.svg" ></md-icon>
              </md-button>
 
@@ -106,6 +106,7 @@
     <script src="app/controllers/user_controllers.js"></script>
     <script src="app/services/localstorage_service.js"></script>
     <script src="app/services/auth_service.js"></script>
+    <script src="app/services/mapping_service.js"></script>
 
 
     </body>

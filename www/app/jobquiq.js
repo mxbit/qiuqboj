@@ -8,7 +8,8 @@ jobquiq = angular.module('jobquiq',[
 	'jobquiq.jobController',
 	'jobquiq.userController',
 	'jobquiq.storageFactory',
-	'jobquiq.authService'
+	'jobquiq.authService',
+	'jobquiq.mappingService'
 	]);
 
 jobquiq.run(['$rootScope','$state','$stateParams','$location',function($rootScope, $state, $stateParams, $location)	{

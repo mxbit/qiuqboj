@@ -2,7 +2,7 @@ var authService = angular.module('jobquiq.authService',['ngResource']);
 
 
 
-authService.factory('Customer', function($resource, $rootScope)  {
+authService.factory('AppUser', function($resource, $rootScope)  {
   var resourceUrl = $rootScope.jsonUrl+'api/appuser/user/';
   return $resource(resourceUrl+':id');
 });
@@ -28,3 +28,7 @@ authService.factory('GoogleAuth2', function($resource) {
     }
 
   });
+
+authService.factory('', function($resource, $rootScope){
+  
+});

@@ -8,7 +8,11 @@ commonController.controller('SideNavController', function($scope, $timeout, $mdS
     $rootScope.isLoggedIn = true;
   }
   else  {
-     $rootScope.isLoggedIn = false;console.log('Not logged');
+     $rootScope.isLoggedIn = false;
+     console.log('Not logged');
+    // var adr = {address:'#525 8th Cross,89'}
+    // var infoResult = {name:'ParamShiv',id:'0101001010',email:'shiv@shiva.com',gender:'male',initial:false,alt_phone:'12070670',addr_1:adr};
+    // LocalStorage.setObject('appUserInfo',infoResult );
   }
 
   $scope.close = function() { $mdSidenav('left').close(); };
