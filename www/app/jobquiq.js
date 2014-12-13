@@ -43,7 +43,7 @@ jobquiq.config(['$stateProvider', '$urlRouterProvider','uiGmapGoogleMapApiProvid
 				,'list': {templateUrl: 'app/view/list.html', controller:'JobsListController'}
 			}
 		});
-		$stateProvider.state('jobsdetail',{url:"/jobsdetail", controller:'JobsDetailController', templateUrl:'app/view/jobsdetail.html'});
+		$stateProvider.state('jobsdetail',{url:"/jobsdetail/:id", controller:'JobsDetailController', templateUrl:'app/view/jobsdetail.html'});
 
 		$stateProvider.state('profile',{url:"/profile", controller:'ProfileController', templateUrl:'app/view/profile.html'});
 		$stateProvider.state('settings',{url:"/settings", controller:'SettingsController', templateUrl:'app/view/settings.html'});

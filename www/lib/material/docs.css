@@ -4044,7 +4044,7 @@ md-radio-group {
 
 md-sidenav {
   position: absolute;
-  width: 170px;
+  width: 200px;
   /*Anand*/
   bottom: 0;
   z-index: 60;

@@ -1,9 +1,62 @@
 var jobController = angular.module('jobquiq.jobController',[]);
 
-jobController.controller('JobsDetailController', function($scope, $rootScope)	{
+jobController.controller('JobsDetailController', function($scope, $rootScope,$stateParams,$window,JobsList, JobService, LocalStorage)	{
+
+$scope.job = JobsList.getSelectedItem($stateParams.id);
+var userInfo = LocalStorage.getObject('appUserInfo')
+
+
 	$scope.gotoBack = function()	{
-		$rootScope.$state.go('jobs');
+		$window.history.back();
+    
 	}
+
+  $scope.hasApplied = function()  {
+    if(userInfo.jobs) {
+      for(var i=0; i<userInfo.jobs.length; i++) {
+        if(Number( userInfo.jobs[i] ) == Number( $scope.job.jobs_id))  {
+          return true;
+        }
+      }
+    }
+    return false;
+    
+  }
+
+  $scope.removeJob = function() {
+    if(userInfo.jobs) {
+      for(var i=0; i<userInfo.jobs.length; i++) {
+        if(Number( userInfo.jobs[i] ) == Number( $scope.job.jobs_id))  {
+          userInfo.jobs.splice(i,1);
+        }
+      }
+    }    
+  }
+  
+  $scope.applyJob = function()  {
+    var hasApplied = $scope.hasApplied();
+    var jb = new JobService({ id: $scope.job.jobs_id,email:userInfo.email, isapplied : hasApplied});
+    jb.$save();
+
+    if(!hasApplied)  {
+      if(userInfo.jobs) {
+        userInfo.jobs.push($scope.job.jobs_id);
+      }
+      else  {
+        userInfo.jobs = [];
+        userInfo.jobs.push($scope.job.jobs_id);
+      }
+    }
+    else  {
+      $scope.removeJob();
+    }
+
+
+
+    LocalStorage.setObject('appUserInfo',userInfo)
+
+  }
+
 });
 
 jobController.controller('JobsListController', function($scope, $rootScope,$window,JobsList)	{

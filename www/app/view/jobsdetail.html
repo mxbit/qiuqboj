@@ -1,9 +1,30 @@
-<div >
-
-
-
-<md-content >
-<h1>Hello details</h1>
+<div>
+<md-content layout="row" style='background-color:#FF5722;padding:15px 15px 0px 15px'>
+	<div flex="50" class="detail_box"> <h3 md-theme="deep-orange">{{job.jobs_name}}</h3></div>
+	<div flex="50" class="detail_box"> <h3 md-theme="deep-orange">&#8377;{{job.jobs_remuneration}}</h3></div>
+</md-content>
+<md-content  style='padding:15px'>
+<div layout="row">
+	<div flex="50" class="detail_box">Location : <br><b>{{job.jobs_location}}</b></div>
+	<div flex="50" class="detail_box">Date : <br><b>{{job.jobs_date}}</b></div>
+</div>
+<div layout="row">
+	<div flex="50" class="detail_box">Start time : <br><b>{{job.jobs_time_from}}</b></div>
+	<div flex="50" class="detail_box">End time : <br><b>{{job.jobs_time_to}}</b></div>
+</div>
+<div layout="row">
+	<div flex ><b>Description</b> : <p class="normal_txt">{{job.jobs_short_desc}}</p></div>
+</div>
+<div layout="row">
+	<div flex class="normal_txt"><b>Description Detailed</b> : <p class="normal_txt">{{job.jobs_long_desc}}</p></div>
+</div>
+<div layout="row">
+	<div flex="50"></div>
+	<div flex="50">
+	<md-button class="md-primary md-raised" md-theme="orange" ng-click='gotoBack()'>Back</md-button>
+	<md-button class="md-warn md-raised" md-theme="orange" ng-click='applyJob()'>{{ !hasApplied() ? 'Apply' : 'Remove'}}</md-button></div>
+</div>
 </md-content>
 
-  </div>
+</div>
+

@@ -4,9 +4,9 @@
       <!-- <md-subheader class="md-primary">Unread Messages</md-subheader> -->
       <md-list layout="column">
         <md-item ng-repeat="item in list">
-        <md-item-content>
+        <md-item-content ui-sref="jobsdetail({id:$index})">
           <div class="md-tile-left">
-            <img ng-src="{{getImage($index)}}" class="face" alt="{{item.who}}">
+            <!-- <a href='#/jobsdetail/{{$index}}' > --><img ng-src="{{getImage($index)}}" class="face" alt="{{item.jobs_name}}"><!-- </a> -->
           </div>
           <div class="md-tile-content list_text">
             <h3>{{item.jobs_name}}</h3>
