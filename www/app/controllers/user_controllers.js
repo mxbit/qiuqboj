@@ -69,10 +69,11 @@ userController.controller('ProfileController', function($scope,$rootScope,AppUse
   $scope.user = LocalStorage.getObject('appUserInfo');
   $scope.addr;
 
-  if($scope.user.addr_1.length > 5 && $scope.user.addr_1 != undefined)  {
-    $scope.addr = JSON.parse($scope.user.addr_1);
+  if($scope.user.addr_1)  {
+    try { $scope.addr = JSON.parse($scope.user.addr_1);}
+    catch(error){alert(error)}
   }
-  console.log($scope.user.addr_1);
+  // console.log($scope.user.addr_1);
   
 	$scope.updateUserInfo = function()	{
 
@@ -150,6 +151,7 @@ commonController.controller('SettingsController', function($scope,$rootScope,$wi
                             location : addr,
                             geoinfo : JSON.stringify(geo_result.address),
                             radius : $scope.radius,
+                            place : $scope.getPlaceBaseName(geo_result.address),
                             update_type:'geo'};
           var appUser = new AppUser(save_data);
           appUser.$save();  
@@ -184,10 +186,15 @@ commonController.controller('SettingsController', function($scope,$rootScope,$wi
     else if(address.village) return (address.village+(address.state_district ? ', '+address.state_district : '' ));
     else if(address.county) return address.county;
     else if(address.state_district) return address.state_district;
-
-
-
     else return null;
+  }
+
+  $scope.getPlaceBaseName = function  (address)  {
+    if(address.city)  return address.city;
+    else if(address.town)  return address.town;
+    else if(address.county)  return address.county;
+    else if(address.state_district)  return address.state_district;
+    else '';
   }
 
 

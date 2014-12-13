@@ -14,8 +14,68 @@ jobController.controller('JobsListController', function($scope, $rootScope,$wind
   // toolbar-tabbar
   $scope.content_height = ($window.innerHeight-48-34);
 
+  $scope.getImage = function(index)  {
+    // console.log(index)
+    var rand = (index)%16//Math.round( Math.random()*16 )+1
+    rand = rand <10 ? '00'+rand+'.jpg' : '0'+rand+'.jpg'
+    return 'img/list/'+rand;
+  }
 
 $scope.messages = [{
+      face: 'img/list/60.jpeg',
+      what: 'Brunch this weekend?',
+      who: 'Min Li Chan',
+      when: '3:08PM',
+      notes: " I'll be in your neighborhood doing errands"
+    }, {
+      face: 'img/list/60.jpeg',
+      what: 'Brunch this weekend?',
+      who: 'Min Li Chan',
+      when: '3:08PM',
+      notes: " I'll be in your neighborhood doing errands"
+    }, {
+      face: 'img/list/60.jpeg',
+      what: 'Brunch this weekend?',
+      who: 'Min Li Chan',
+      when: '3:08PM',
+      notes: " I'll be in your neighborhood doing errands"
+    }, {
+      face: 'img/list/60.jpeg',
+      what: 'Brunch this weekend?',
+      who: 'Min Li Chan',
+      when: '3:08PM',
+      notes: " I'll be in your neighborhood doing errands"
+    }, {
+      face: 'img/list/60.jpeg',
+      what: 'Brunch this weekend?',
+      who: 'Min Li Chan',
+      when: '3:08PM',
+      notes: " I'll be in your neighborhood doing errands"
+    }, {
+      face: 'img/list/60.jpeg',
+      what: 'Brunch this weekend?',
+      who: 'Min Li Chan',
+      when: '3:08PM',
+      notes: " I'll be in your neighborhood doing errands"
+    }, {
+      face: 'img/list/60.jpeg',
+      what: 'Brunch this weekend?',
+      who: 'Min Li Chan',
+      when: '3:08PM',
+      notes: " I'll be in your neighborhood doing errands"
+    }, {
+      face: 'img/list/60.jpeg',
+      what: 'Brunch this weekend?',
+      who: 'Min Li Chan',
+      when: '3:08PM',
+      notes: " I'll be in your neighborhood doing errands"
+    }, {
+      face: 'img/list/60.jpeg',
+      what: 'Brunch this weekend?',
+      who: 'Min Li Chan',
+      when: '3:08PM',
+      notes: " I'll be in your neighborhood doing errands"
+      },{  
       face: 'img/list/60.jpeg',
       what: 'Brunch this weekend?',
       who: 'Min Li Chan',
