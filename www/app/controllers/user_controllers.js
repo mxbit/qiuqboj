@@ -94,7 +94,7 @@ userController.controller('ProfileController', function($scope,$rootScope,AppUse
 
 });
 
-commonController.controller('SettingsController', function($scope,$rootScope,$window,$interval,LocalStorage,ReverseGeo,AppUser){
+commonController.controller('SettingsController', function($scope,$rootScope,$window,$interval,LocalStorage,ReverseGeo,AppUser,JobsList){
    $scope.radius = 10;
    $scope.notification = 'ON';
    $scope.content_height = ($window.innerHeight-48-132);
@@ -145,20 +145,27 @@ commonController.controller('SettingsController', function($scope,$rootScope,$wi
       if(geo_result.$resolved)  {
         //console.log(geo_result.address)
         var addr = $scope.getBaseAddress(geo_result.address);
+        var place = $scope.getPlaceBaseName(geo_result.address)
         if(addr)  {
           var save_data = {email:$scope.userinfo.email, 'initial':false, 
                             latlong : $scope.map.center.latitude+','+$scope.map.center.longitude, 
                             location : addr,
                             geoinfo : JSON.stringify(geo_result.address),
                             radius : $scope.radius,
-                            place : $scope.getPlaceBaseName(geo_result.address),
+                            place : place,
                             update_type:'geo'};
           var appUser = new AppUser(save_data);
           appUser.$save();  
           
           $scope.userinfo.latlong = JSON.stringify($scope.map.center);
           $scope.userinfo.radius = $scope.radius;
+          $scope.userinfo.place_name = place;
           LocalStorage.setObject('appUserInfo',$scope.userinfo);
+
+          /*****************
+          JOB LISTING GETTING AT THE INITIAL STAGE
+          ******************/
+          JobsList.lookupList(place);
 
           //console.log(' -------- '+addr)
         }

@@ -1,9 +1,16 @@
 var commonController = angular.module('jobquiq.commonController',[]);
 
-commonController.controller('SideNavController', function($scope, $timeout, $mdSidenav, $rootScope, $mdDialog, LocalStorage) {
+commonController.controller('SideNavController', function($scope, $timeout, $mdSidenav, $rootScope, $mdDialog, LocalStorage, JobsList) {
   
-  //checking login status
   var user = LocalStorage.getObject('appUserInfo');
+
+  /*****************
+      JOB LISTING GETTING AT THE INITIAL STAGE
+  ******************/
+  JobsList.lookupList(user.place_name);
+  //checking login status
+  
+
   if(user.email)  {
     $rootScope.isLoggedIn = true;
   }

@@ -3,16 +3,16 @@
     <section>
       <!-- <md-subheader class="md-primary">Unread Messages</md-subheader> -->
       <md-list layout="column">
-        <md-item ng-repeat="item in messages">
+        <md-item ng-repeat="item in list">
         <md-item-content>
           <div class="md-tile-left">
             <img ng-src="{{getImage($index)}}" class="face" alt="{{item.who}}">
           </div>
           <div class="md-tile-content list_text">
-            <h3>{{item.what}}</h3>
-            <h4>{{item.who}}</h4>
+            <h3>{{item.jobs_name}}</h3>
+            <h4>{{item.jobs_date}}</h4>
             <p>
-              {{item.notes}}
+              {{item.jobs_short_desc}}
             </p>
           </div>
         </md-item-content>

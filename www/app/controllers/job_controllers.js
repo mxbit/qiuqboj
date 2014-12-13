@@ -6,11 +6,11 @@ jobController.controller('JobsDetailController', function($scope, $rootScope)	{
 	}
 });
 
-jobController.controller('JobsListController', function($scope, $rootScope,$window)	{
+jobController.controller('JobsListController', function($scope, $rootScope,$window,JobsList)	{
 	$scope.goDetails = function()	{
 		$rootScope.$state.go('jobsdetail');
 	}
-
+  console.log(JobsList.getList())
   // toolbar-tabbar
   $scope.content_height = ($window.innerHeight-48-34);
 
@@ -21,115 +21,8 @@ jobController.controller('JobsListController', function($scope, $rootScope,$wind
     return 'img/list/'+rand;
   }
 
-$scope.messages = [{
-      face: 'img/list/60.jpeg',
-      what: 'Brunch this weekend?',
-      who: 'Min Li Chan',
-      when: '3:08PM',
-      notes: " I'll be in your neighborhood doing errands"
-    }, {
-      face: 'img/list/60.jpeg',
-      what: 'Brunch this weekend?',
-      who: 'Min Li Chan',
-      when: '3:08PM',
-      notes: " I'll be in your neighborhood doing errands"
-    }, {
-      face: 'img/list/60.jpeg',
-      what: 'Brunch this weekend?',
-      who: 'Min Li Chan',
-      when: '3:08PM',
-      notes: " I'll be in your neighborhood doing errands"
-    }, {
-      face: 'img/list/60.jpeg',
-      what: 'Brunch this weekend?',
-      who: 'Min Li Chan',
-      when: '3:08PM',
-      notes: " I'll be in your neighborhood doing errands"
-    }, {
-      face: 'img/list/60.jpeg',
-      what: 'Brunch this weekend?',
-      who: 'Min Li Chan',
-      when: '3:08PM',
-      notes: " I'll be in your neighborhood doing errands"
-    }, {
-      face: 'img/list/60.jpeg',
-      what: 'Brunch this weekend?',
-      who: 'Min Li Chan',
-      when: '3:08PM',
-      notes: " I'll be in your neighborhood doing errands"
-    }, {
-      face: 'img/list/60.jpeg',
-      what: 'Brunch this weekend?',
-      who: 'Min Li Chan',
-      when: '3:08PM',
-      notes: " I'll be in your neighborhood doing errands"
-    }, {
-      face: 'img/list/60.jpeg',
-      what: 'Brunch this weekend?',
-      who: 'Min Li Chan',
-      when: '3:08PM',
-      notes: " I'll be in your neighborhood doing errands"
-    }, {
-      face: 'img/list/60.jpeg',
-      what: 'Brunch this weekend?',
-      who: 'Min Li Chan',
-      when: '3:08PM',
-      notes: " I'll be in your neighborhood doing errands"
-      },{  
-      face: 'img/list/60.jpeg',
-      what: 'Brunch this weekend?',
-      who: 'Min Li Chan',
-      when: '3:08PM',
-      notes: " I'll be in your neighborhood doing errands"
-    }, {
-      face: 'img/list/60.jpeg',
-      what: 'Brunch this weekend?',
-      who: 'Min Li Chan',
-      when: '3:08PM',
-      notes: " I'll be in your neighborhood doing errands"
-    }, {
-      face: 'img/list/60.jpeg',
-      what: 'Brunch this weekend?',
-      who: 'Min Li Chan',
-      when: '3:08PM',
-      notes: " I'll be in your neighborhood doing errands"
-    }, {
-      face: 'img/list/60.jpeg',
-      what: 'Brunch this weekend?',
-      who: 'Min Li Chan',
-      when: '3:08PM',
-      notes: " I'll be in your neighborhood doing errands"
-    }, {
-      face: 'img/list/60.jpeg',
-      what: 'Brunch this weekend?',
-      who: 'Min Li Chan',
-      when: '3:08PM',
-      notes: " I'll be in your neighborhood doing errands"
-    }, {
-      face: 'img/list/60.jpeg',
-      what: 'Brunch this weekend?',
-      who: 'Min Li Chan',
-      when: '3:08PM',
-      notes: " I'll be in your neighborhood doing errands"
-    }, {
-      face: 'img/list/60.jpeg',
-      what: 'Brunch this weekend?',
-      who: 'Min Li Chan',
-      when: '3:08PM',
-      notes: " I'll be in your neighborhood doing errands"
-    }, {
-      face: 'img/list/60.jpeg',
-      what: 'Brunch this weekend?',
-      who: 'Min Li Chan',
-      when: '3:08PM',
-      notes: " I'll be in your neighborhood doing errands"
-    }, {
-      face: 'img/list/60.jpeg',
-      what: 'Brunch this weekend?',
-      who: 'Min Li Chan',
-      when: '3:08PM',
-      notes: " I'll be in your neighborhood doing errands"
-    }];
+
+  $scope.list = JobsList.getList();
     
 
 
