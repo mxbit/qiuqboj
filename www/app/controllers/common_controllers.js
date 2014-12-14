@@ -70,7 +70,7 @@ commonController.controller('JobsController', function($scope, $rootScope)	{
     console.log('My focus');
   }
 
-  $scope.data = {selectedIndex : 0};
+  $scope.data = {selectedIndex : ($rootScope.fromMap ? 1 : 0)};
 
     $scope.next = function() {
       $scope.data.selectedIndex = Math.min($scope.data.selectedIndex + 1, 2) ;

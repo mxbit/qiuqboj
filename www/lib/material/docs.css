@@ -5708,9 +5708,15 @@ md-radio-button.md-blue-theme .md-container .md-ripple, md-switch.md-blue-theme 
 md-radio-button.md-blue-theme .md-off, md-switch.md-blue-theme .md-switch-thumb .md-off {
   border-color: rgba(0, 0, 0, 0.54); }
 md-radio-button.md-blue-theme .md-on, md-switch.md-blue-theme .md-switch-thumb .md-on {
-  background-color: rgba(102, 187, 106, 0.87); }
+  /*background-color: rgba(102, 187, 106, 0.87); */
+  /*Anand*/
+  background-color: rgba(13, 169, 244, 0.87);
+}
 md-radio-button.md-blue-theme.md-checked .md-off, md-switch.md-blue-theme .md-switch-thumb.md-checked .md-off {
-  border-color: rgba(102, 187, 106, 0.87); }
+  /*border-color: rgba(102, 187, 106, 0.87); */
+  /*Anand*/
+  border-color: rgba(13, 169, 244, 0.87);
+}
 md-radio-button.md-blue-theme.md-checked .md-ink-ripple, md-switch.md-blue-theme .md-switch-thumb.md-checked .md-ink-ripple {
   color: rgba(102, 187, 106, 0.87); }
 

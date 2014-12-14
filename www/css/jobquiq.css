@@ -9,10 +9,9 @@
 .profile .face {border-radius: 30px;border: 1px solid #ddd;width: 48px;margin: 16px; margin-bottom: 0px; }
 .detail_box{height: 60px}
 .normal_txt{text-transform: none;}
-.md-button{
-  
-   font-family: RobotoDraft, Roboto, sans-serif;font-weight: bold;
-}
+.md-button{font-family: RobotoDraft, Roboto, sans-serif;font-weight: bold;}
+.menu-item{font-family: RobotoDraft, Roboto, sans-serif;font-weight: bold;font-size: 14px;font-style: normal;font-variant: normal;letter-spacing: 0.5px}
+
 /*TOOLBARS*/
 md-toolbar {
   display: -webkit-box;

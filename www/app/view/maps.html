@@ -4,18 +4,13 @@
     center="map.center"
     zoom="map.zoom" >
 
-    <ui-gmap-marker
-    idKey="marker.id"
-    coords="marker.coords"
-    icon="marker.icon">
-    <ui-gmap-window show='true'>
-      <div>
-        hello
-      </div>
+    <ui-gmap-marker ng-repeat="m in markers" coords="m.coords" icon="m.icon" fit='true'  idkey="m.id" events="markersEvents">
+    <ui-gmap-window show='false'>
+      <div ><a href="#/jobsdetail/{{$index}}" style="text-decoration:none;"><h4 style="margin:0px;">{{m.jobs_name}} for <span style='color:rgba(244, 123, 70, 1)'>&#8377;{{m.price}}</span></h4></a> </div>
     </ui-gmap-window>
   </ui-gmap-marker>
 
 
 </ui-gmap-google-map>
 </md-content>
-<md-button class="md-primary" md-theme="cyan" ng-click='goDetails()'>GO DETAILS MORE</md-button>
+<!-- <md-button class="md-primary" md-theme="cyan" ng-click='goDetails()'>GO DETAILS MORE</md-button> -->
